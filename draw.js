@@ -12,23 +12,16 @@ function setup() {
 	t = 0
 
 	control_points = []
-	for (let i = 0; i < 8; i++) {
+	for (let i = 0; i < 6; i++) {
 		control_points.push({
-			x: 200 * i - 400 + Math.sin(i) * 100,
-			y: Math.sin(3 * i) * 500
+			x: 200 * i - 800 + Math.random() * 400,
+			y: Math.random() * 1000 - 500
 		})
 	}
 
 	context.setTransform(1, 0, 0, 1, 0, 0)
 	context.clearRect(0, 0, canvas.width, canvas.height)
 	context.translate(canvas.width / 2, canvas.height / 2)
-
-	context.fillStyle = '#ff7777'
-	for (const pt of control_points) {
-		context.beginPath()
-		context.arc(pt.x, pt.y, 8, 0, Math.PI * 2)
-		//context.fill()
-	}
 
 	context.globalAlpha = 0.2
 }
@@ -43,7 +36,7 @@ function draw(delta) {
 		draw_bezier(control_points, t)
 
 	t += 0.01
-	if (t > 2) {
+	if (t > 3) {
 		setup()
 	}
 }
